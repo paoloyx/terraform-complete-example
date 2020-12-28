@@ -8,7 +8,7 @@ locals {
 locals {
   # Common tags to be assigned to all resources
   common_tags = {
-    Owner     = local.owner
+    Owner       = local.owner
     Environment = local.env
     Application = local.app
   }
