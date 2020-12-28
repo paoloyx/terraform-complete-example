@@ -23,3 +23,10 @@ resource "aws_instance" "workers" {
   # Creates three instances
   count = 3
 }
+
+output "workers_public_ip_addresses" {
+  description = "The public ip address of every worker instance"
+  value = [
+    for worker in aws_instance.workers[*]: "Worker ${worker.id} has ip address ${worker.public_ip}"
+  ]
+}
