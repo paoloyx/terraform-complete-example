@@ -14,11 +14,7 @@ resource "aws_instance" "workers" {
   ami           = data.aws_ami.ubuntu_20_04_LTS.id
   instance_type = var.instance_type
 
-  tags = {
-    owner = "paolofilippelli"
-    env   = "develop"
-    app   = "udemy"
-  }
+  tags = merge(local.common_tags, local.worker_tags)
 
   # Creates three instances
   count = 3
@@ -28,11 +24,7 @@ resource "aws_instance" "controllers" {
   ami           = data.aws_ami.ubuntu_20_04_LTS.id
   instance_type = var.instance_type
 
-  tags = {
-    owner = "paolofilippelli"
-    env   = "develop"
-    app   = "udemy"
-  }
+  tags = merge(local.common_tags, local.controller_tags)
 
   # Creates three instances
   count = 3
