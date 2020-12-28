@@ -10,8 +10,8 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_instance" "web" {
-  ami           = "ami-00798d7180f25aac2"
+resource "aws_instance" "workers" {
+  ami           = data.aws_ami.ubuntu_20_04_LTS.id
   instance_type = var.instance_type
 
   tags = {
