@@ -7,12 +7,12 @@ terraform {
   }
 }
 provider "aws" {
-  region     = "eu-west-3"
+  region = var.aws_region
 }
 
 resource "aws_instance" "web" {
   ami           = "ami-00798d7180f25aac2"
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
   tags = {
     owner = "paolofilippelli"
