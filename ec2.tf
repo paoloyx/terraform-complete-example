@@ -19,4 +19,7 @@ resource "aws_instance" "web" {
     env   = "develop"
     app   = "udemy"
   }
+
+  # Creates three instances
+  count = 3
 }
