@@ -16,8 +16,8 @@ resource "aws_instance" "workers" {
 
   tags = merge(local.common_tags, local.worker_tags)
 
-  # Creates three instances
-  count = 3
+  # Instances count is set by `high_availability` variable
+  count = (var.high_availability == true ? 3 : 1)
 }
 
 resource "aws_instance" "controllers" {
@@ -26,8 +26,8 @@ resource "aws_instance" "controllers" {
 
   tags = merge(local.common_tags, local.controller_tags)
 
-  # Creates three instances
-  count = 3
+  # Instances count is set by `high_availability` variable
+  count = (var.high_availability == true ? 3 : 1)
 }
 
 output "workers_public_ip_addresses" {
