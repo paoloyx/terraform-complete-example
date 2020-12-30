@@ -11,8 +11,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "workers" {
-  ami           = data.aws_ami.ubuntu_20_04_LTS.id
-  instance_type = var.instance_type
+  ami             = data.aws_ami.ubuntu_20_04_LTS.id
+  instance_type   = var.instance_type
+  key_name        = "terraform-oregon"
 
   tags = merge(local.common_tags, local.worker_tags)
 
