@@ -34,6 +34,26 @@ resource "aws_instance" "workers" {
 
   tags = merge(local.common_tags, local.worker_tags)
 
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("${path.module}/terraform-oregon.pem")
+    host        = self.public_ip
+  }
+
+  # Echoing just to gain time and ensure istance is ready before actually
+  # executing "real" local-exec provider
+  provisioner "remote-exec" {
+    inline = ["echo 'Hello World! My work is to allow local-exec do its duty - a very ugly workaround!'"]
+
+  }
+
+  # Uses ansible to install nginx
+  provisioner "local-exec" {
+    command = "ansible-playbook -i '${self.public_ip},' --private-key '${path.module}/terraform-oregon.pem' ansible-playbooks/install-nginx.yml"
+
+  }
+
   # Instances count is set by `high_availability` variable
   count = (var.high_availability == true ? 3 : 1)
 }
