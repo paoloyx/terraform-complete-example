@@ -2,6 +2,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=terraform
 
 ### Terraform ###
+# Private key ending with .pem
+*.pem
+
 # Local .terraform directories
 **/.terraform/*
 
