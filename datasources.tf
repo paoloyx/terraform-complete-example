@@ -15,3 +15,8 @@ data "aws_ami" "ubuntu_20_04_LTS" {
   owners      = ["099720109477"] #Canonical
   most_recent = true
 }
+
+# Datasource for "available" availability zones
+data "aws_availability_zones" "available" {
+  state = "available"
+}

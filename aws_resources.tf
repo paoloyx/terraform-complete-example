@@ -27,6 +27,8 @@ resource "aws_instance" "workers" {
   instance_type   = var.instance_type
   key_name        = "terraform-oregon"
   security_groups = [aws_security_group.workers_security_group.name]
+  # Spreads instances across AZ using "modulo" function
+  availability_zone = data.aws_availability_zones.available.names[count.index % length(data.aws_availability_zones.available)]
 
   tags = merge(local.common_tags, local.worker_tags)
 
@@ -57,6 +59,8 @@ resource "aws_instance" "workers" {
 resource "aws_instance" "controllers" {
   ami           = data.aws_ami.ubuntu_20_04_LTS.id
   instance_type = var.instance_type
+  # Spreads instances across AZ using "modulo" function
+  availability_zone = data.aws_availability_zones.available.names[count.index % length(data.aws_availability_zones.available)]
 
   tags = merge(local.common_tags, local.controller_tags)
 
