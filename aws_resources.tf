@@ -33,7 +33,7 @@ resource "aws_instance" "workers" {
   tags = merge(local.common_tags, local.worker_tags)
 
   # Instances count is set by `high_availability` variable
-  count = (var.high_availability == true ? 3 : 1)
+  count = (var.high_availability == true ? 5 : 1)
 }
 
 resource "aws_instance" "controllers" {
