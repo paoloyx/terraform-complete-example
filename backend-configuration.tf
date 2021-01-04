@@ -5,7 +5,7 @@ terraform {
     organization = "paolofilippelli"
 
     workspaces {
-      name = "terraform-complete-example-"
+      prefix = "terraform-complete-example-"
     }
   }
 }
