@@ -8,7 +8,7 @@ module "workers_security_group" {
 # Creates a security group for controllers
 module "controllers_security_group" {
   source              = "./modules/security-group"
-  security_group_name = "workers_security_group"
+  security_group_name = "controllers_security_group"
   ingress_ports       = [22, 80]
 }
 
