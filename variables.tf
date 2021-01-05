@@ -15,9 +15,3 @@ variable "high_availability" {
   description = "If this is a multiple instance deployment, choose `true` to deploy 3 instances, `false` to deploy only 1 instance"
   default     = true
 }
-
-variable "ingress_ports" {
-  type        = list(number)
-  description = "These ports will be opened in ingress on every EC2 instance"
-  default     = [22, 80]
-}
